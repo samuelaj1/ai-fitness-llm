@@ -1,0 +1,54 @@
+{
+  "branchDashboard": "Branch Dashboard",
+  "orders": "Orders",
+  "configurations": "Configurations",
+  "transactions": "Transactions",
+  "order_transactions": "Order Transactions",
+  "pendingOrders": "Pending Orders",
+  "rejectedVendors": "Rejected Vendors",
+  "pendingVendors": "Pending Vendors",
+  "vendors": "Vendors",
+  "deliveredOrders": "Delivered Orders",
+  "account": "Account",
+  "user-management": "User Management",
+  "adminDashboard": "Admin Dashboard",
+  "adminOrders": "Orders",
+  "adminShops": "Online Vendors",
+  "adminAccount": "Account",
+  "adminStockControl": "Stock Control",
+  "branches": "Branches",
+  "settings": "Settings",
+  "faq": "Frequently Asked Questions",
+  "logout": "Logout",
+  "dashboard": "Dashboard",
+  "inventory": {
+    "text": "Inventory",
+    "submenu": {
+      "inventoryHistory": "Inventory History",
+      "inventory": "Inventory"
+    }
+  },
+  "product": {
+    "text": "Products",
+    "submenu": {
+      "product": "All Products",
+      "productHistory": "Stock History"
+    }
+  },
+  "order": {
+    "text": "Orders",
+    "submenu": {
+      "allOrders": "All Orders",
+      "addOrders": "Add New Orders",
+      "uploadOrders": "Upload New Orders",
+      "pendingApproval": "Pending Approval"
+    }
+  },
+  "payment": {
+    "text": "Payments",
+    "submenu": {
+      "requests": "Payment Requests",
+      "withdrawal": "Withdraw funds"
+    }
+  }
+}

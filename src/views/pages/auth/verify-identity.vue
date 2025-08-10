@@ -1,0 +1,152 @@
+<template>
+  <div>
+    <topHeader></topHeader>
+    <div class="login-area mt-50 mb-120">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h1 class="fw-bold mb-0">Identify Verification</h1>
+
+              <router-link to="/business-details" class="ms-auto">
+                <a href="#" class="text-decoration-underline me-2">Cancel</a>
+                <a href="#" aria-label="Close"><i class="fa fa-times"></i></a>
+              </router-link>
+            </div>
+
+            <div class="progress">
+              <div class="progress-bar bg-primary-1" style="width: 71.42%" role="progressbar"></div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between mt-3">
+              <h6 class=" mb-0">Step 6/7</h6>
+              <div class="ms-auto cursor-pointer">
+                <a @click="showModal = true" class="me-2" aria-label="Close"><i class="fa fa-info-circle"></i></a>
+                <a @click="showModal = true" class="text-decoration-underline" >All Steps</a>
+              </div>
+
+            </div>
+            <div class="form-wrapper mt-5">
+              <div class="form-title mb-25">
+                <h3 class="text-start">Verify your identity</h3>
+              </div>
+              <p class="mb-4 font-weight-lighter"> This helps us check that you’re really you. Identity verification is one of the ways we keep TradeLink secure.</p>
+              <p class="mb-4 font-weight-lighter">Your ID will be handled securely and won’t be shared with anyone else.</p>
+              <div class="button-container mt-5">
+                <div class="col-12">
+                  <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.push('/business-details')">Back</button>
+                  <button class="btn primry-btn-2 d-inline-block text-light big-button" @click="$router.push('/id-verification')">
+                    Continue
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Steps Modal -->
+    <b-modal v-model="showModal" title="Complete your registration">
+      <div class="registration-steps">
+        <div class="step completed">
+          <span class="step-icon">✓</span>
+          <span class="step-text">Work details</span>
+        </div>
+        <div class="step completed">
+          <span class="step-icon">✓</span>
+          <span class="step-text">Profession</span>
+        </div>
+        <div class="step completed">
+          <span class="step-icon">✓</span>
+          <span class="step-text">Work Distance</span>
+        </div>
+        <div class="step completed">
+          <span class="step-icon">✓</span>
+          <span class="step-text">Business Type</span>
+        </div>
+        <div class="step completed">
+          <span class="step-icon">✓</span>
+          <span class="step-text">Business Details</span>
+        </div>
+        <div class="step completed">
+          <span class="step-icon">6</span>
+          <span class="step-text">Identity Verification</span>
+        </div>
+        <div class="step">
+          <span class="step-icon">7</span>
+          <span class="step-text">Skills Verification</span>
+        </div>
+      </div>
+      <template #modal-footer>
+        <b-button variant="secondary" @click="showModal = false">Close</b-button>
+        <b-button class="btn bg-primary-1 text-light ">Save changes</b-button>
+      </template>
+    </b-modal>
+
+  </div>
+</template>
+
+<script>
+import Auth from "../../layouts/auth";
+import appConfig from "../../../../app.config.json";
+import topHeader from '../../base-layout/header-1'
+
+/**
+ * Login component
+ */
+export default {
+  page: {
+    title: "Verify Your Identity",
+    meta: [{name: "description", content: appConfig.description}],
+  },
+  data() {
+    return {
+      showModal:false,
+    };
+  },
+  components: {
+    Auth,
+    topHeader
+  },
+
+  created() {
+  },
+};
+</script>
+
+<style scoped>
+
+.registration-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.step.completed {
+  background-color: #e9f7ef;
+  color: #28a745;
+}
+
+.step-icon {
+  font-weight: bold;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--primary-color1);
+  width: 20%; /* Adjust based on step */
+}
+
+</style>
