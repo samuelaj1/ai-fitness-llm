@@ -5,87 +5,22 @@ export const userService = {
     login,
     adminLogin,
     adminRegister,
-    deleteJob,
     logout,
-    getTrades,
-    pageStats,
-    getQualifications,
-    homeOwnerJobPosts,
-    getForumQuestions,
-    getProfileViews,
-    getForumQuestionDetails,
-    searchForum,
-    askQuestions,
-    submitQuestionComment,
-    submitReply,
-    postJobTrades,
-    updateQualificationStatus,
-    updateJob,
-    updateTradesperson,
-    postProfileView,
-    contactFormSubmit,
-    verifyIdentity,
-    completeJob,
-    submitRating,
-    getTradespersonsByTrade,
-    getTradesperson,
-    getTradeQuestion,
-    getParishCities,
-    getServiceInvites,
-    getUserInterest,
-    createAccount,
-    registerHomeOwner,
-    signUp,
-    saveProfession,
-    sendInvite,
-    inviteTradesperson,
-    saveTravelToWork,
-    workArea,
-    businessType,
-    businessDetails,
-    idVerification,
-    proofOfSkills,
-    verifyEmail,
-    uploadQualifications,
-    getUserInfo,
-    getGuarantee,
-    getProjectDetails,
-    getProjectInterest,
-    jobDetails,
-    adminJobDetails,
-    getPostedServices,
-    getJobPosts,
-    getJobsNearMe,
-    userStats,
-    getTradePeople,
-    getHomeowners,
-    updateGuarantee,
-    getPortfolio,
-    getBusinessType,
-    getProfessions,
-    getBusinessDetails,
-    getUserProfile,
-    getIdStatus,
-    checkIdVerified,
-    editPortfolio,
-    editTrade,
-    addPortfolio,
-    getRecommendedTradesperson,
-    getRatings,
-    savePortfolioOrder,
-    deletePortfolio,
-    deleteTrades,
-    deleteTradesPerson,
-    createTrade,
-    resendVerifyEmail,
-    getPermissions,
-    verifyHomeOwner,
-    postJob,
-    acceptInvite,
-    getAcceptedInterest,
-    addAdmins,
-    saveTradeQuestions,
-    editAdmin,
+    checkIn,
+    getMotivationalMessage,
+    listByUser,
+    createFromTemplate,
+    addProgress,
+    deleteGoal,
+    chart,
+    saveLLMResponse,
+    getCheckInHistory,
+    chat,
+    getMood,
+    getPlans,
+    getEngagement,
+    getGoals,
+    getComB,
     resendPasswordAdmin,
     forgotPassword,
     resetPassword,
@@ -136,467 +71,6 @@ function adminRegister(payload) {
     })
 }
 
-function deleteJob(jobId) {
-    return new Promise((resolve) => {
-        axios.delete(`/admin/api/job/${jobId}`, useBearerTokenHeaders())
-            .then(response => {
-                 resolve(response.data)
-        }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function signUp(payload) {
-    return new Promise((resolve) => {
-        axios.post('/api/sign-up', payload, useBasicAuthHeaders())
-            .then(response => {
-                 resolve(response.data)
-        }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function createAccount(payload) {
-    return new Promise((resolve) => {
-        axios.post('/api/create-account', payload, useBasicAuthHeaders())
-            .then(response => {
-                 resolve(response.data)
-        }).catch(err => resolve({status: false, message: err}));
-    })
-
-}
-
-function registerHomeOwner(payload) {
-    return new Promise((resolve) => {
-        axios.post('/job-poster/api/register-home-owner', payload, useBasicAuthHeaders())
-            .then(response => {
-                 resolve(response.data)
-        }).catch(err => resolve({status: false, message: err}));
-    })
-
-}
-
-function saveProfession(payload) {
-    return new Promise((resolve) => {
-        axios.post('/api/profession', payload, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function sendInvite(payload) {
-    return new Promise((resolve) => {
-        axios.post('/api/invites', payload, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function inviteTradesperson(payload) {
-    return new Promise((resolve) => {
-        axios.post('/api/invite-tradesperson', payload, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function saveTravelToWork(payload) {
-    return new Promise((resolve) => {
-        axios.post('/api/travel-to-work', payload, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function workArea(payload) {
-    return new Promise((resolve) => {
-        axios.post('/api/work-area', payload, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function businessType(payload) {
-    return new Promise((resolve) => {
-        axios.post('/api/business-type', payload, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function businessDetails(payload) {
-    return new Promise((resolve) => {
-        axios.post('/api/business-details', payload, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function idVerification(formData) {
-    return new Promise((resolve, reject) => {
-        axios.post('/api/verify-identity', formData, useBearerTokenHeaders(true))
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function proofOfSkills(formData) {
-    return new Promise((resolve, reject) => {
-        axios.post('/api/proof-of-skills', formData, useBearerTokenHeaders(true))
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getQualifications() {
-    return new Promise((resolve) => {
-        axios.get(`/api/get-qualifications`, useBearerTokenHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
-
-
-function uploadQualifications(formData) {
-    return new Promise((resolve) => {
-        axios.post('/api/upload-qualifications', formData, useBearerTokenHeaders(true))
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-
-function getUserInfo() {
-    return new Promise((resolve) => {
-        axios.get(`/api/user`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getGuarantee() {
-    return new Promise((resolve) => {
-        axios.get(`/api/user/guarantee`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getProjectDetails(id) {
-    return new Promise((resolve) => {
-        axios.get(`/api/project/${id}`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getProjectInterest(id) {
-    return new Promise((resolve) => {
-        axios.get(`/api/project/${id}/interests`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function adminJobDetails(id) {
-    return new Promise((resolve) => {
-        axios.get(`/admin/api/job/${id}`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function jobDetails(id) {
-    return new Promise((resolve) => {
-        axios.get(`/api/job/${id}`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getPostedServices() {
-    return new Promise((resolve) => {
-        axios.get(`/api/posted-services`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getJobPosts() {
-    return new Promise((resolve) => {
-        axios.get(`/admin/api/job-posts`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function homeOwnerJobPosts(id) {
-    return new Promise((resolve) => {
-        axios.get(`/admin/api/job-posts-by-homeowner/${id}`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getJobsNearMe() {
-    return new Promise((resolve) => {
-        axios.get(`/api/get-jobs-near-me`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function userStats() {
-    return new Promise((resolve) => {
-        axios.get(`/api/user-stats`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getTradePeople() {
-    return new Promise((resolve) => {
-        axios.get(`/admin/api/tradespeople`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getHomeowners() {
-    return new Promise((resolve) => {
-        axios.get(`/admin/api/homeowners`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getRecommendedTradesperson(service_id) {
-    return new Promise((resolve) => {
-        axios.get(`/api/recommended/tradesperson/${service_id}`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getRatings(id) {
-    return new Promise((resolve) => {
-        axios.get(`/api/user/rating/${id}`, useBasicAuthHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function updateGuarantee(payload) {
-    return new Promise((resolve) => {
-        axios.post('/api/update-guarantee', payload, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getPortfolio() {
-    return new Promise((resolve) => {
-        axios.get(`/api/get-portfolio`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getBusinessType() {
-    return new Promise((resolve) => {
-        axios.get(`/api/business-type`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getProfessions() {
-    return new Promise((resolve) => {
-        axios.get(`/api/professions`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getBusinessDetails() {
-    return new Promise((resolve) => {
-        axios.get(`/api/business-details`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-function getUserProfile(userId) {
-    return new Promise((resolve) => {
-        axios.get(`/api/user-profile/${userId}`, useBasicAuthHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getTradesperson(userId) {
-    return new Promise((resolve) => {
-        axios.get(`/admin/api/tradesperson/${userId}`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getIdStatus() {
-    return new Promise((resolve) => {
-        axios.get(`/api/id-status`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function checkIdVerified() {
-    return new Promise((resolve) => {
-        axios.get(`/api/check-id-verified`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function editPortfolio(formData, id) {
-    return new Promise((resolve) => {
-        axios.post('/api/edit-portfolio/' + id, formData, useBearerTokenHeaders(true))
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function editTrade(formData, id) {
-    return new Promise((resolve) => {
-        axios.post('/admin/api/edit-trade/' + id, formData, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function addPortfolio(formData) {
-    return new Promise((resolve) => {
-        axios.post('/api/add-portfolio', formData, useBearerTokenHeaders(true))
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function savePortfolioOrder(formData) {
-    return new Promise((resolve) => {
-        axios.post('/api/portfolio/reorder', formData, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function saveTradeQuestions(payload) {
-    return new Promise((resolve) => {
-        axios.post('/admin/api/save-questions', payload, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-function deletePortfolio(id) {
-    return new Promise((resolve) => {
-        axios.delete('/api/portfolio/delete/'+ id, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function deleteTrades(tradeIds) {
-    return new Promise((resolve) => {
-        axios.post('/admin/api/trade/delete', tradeIds, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function deleteTradesPerson(id) {
-    return new Promise((resolve) => {
-        axios.delete(`/admin/api/trades-persons/${id}`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function createTrade(formData) {
-    return new Promise((resolve) => {
-        axios.post('/admin/api/trade', formData, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function postJob(formData) {
-    return new Promise((resolve) => {
-        axios.post('/job-poster/api/post-job', formData, useBearerTokenHeaders(true))
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function acceptInvite(payload) {
-    return new Promise((resolve) => {
-        axios.post(`/api/accept-invite`, payload, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
-
-function getAcceptedInterest(id) {
-    return new Promise((resolve) => {
-        axios.get(`/api/invite/accepted/${id}`, useBearerTokenHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-}
 
 
 function logout() {
@@ -686,9 +160,9 @@ function getTrades(limit) {
     });
 }
 
-function pageStats() {
+function listByUser(userId) {
     return new Promise((resolve) => {
-        axios.get(`/api/fetch-page-stats`, useBasicAuthHeaders())
+        axios.get(`/api/user/${userId}`, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -696,9 +170,9 @@ function pageStats() {
     });
 }
 
-function getForumQuestions() {
+function getMotivationalMessage(payload) {
     return new Promise((resolve) => {
-        axios.get(`/api/forum/threads`, useBearerTokenHeaders())
+        axios.post(`/api/motivational-message`, payload, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -706,9 +180,9 @@ function getForumQuestions() {
     });
 }
 
-function getProfileViews(userId) {
+function saveLLMResponse(payload) {
     return new Promise((resolve) => {
-        axios.get(`/api/profile-views/${userId}`, useBearerTokenHeaders())
+        axios.post(`/api/llm-response`, payload, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -716,9 +190,9 @@ function getProfileViews(userId) {
     });
 }
 
-function getForumQuestionDetails(id) {
+function createFromTemplate(payload) {
     return new Promise((resolve) => {
-        axios.get(`/api/forum/threads/${id}`, useBearerTokenHeaders())
+        axios.post(`/api/template`, payload, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -726,9 +200,9 @@ function getForumQuestionDetails(id) {
     });
 }
 
-function searchForum(term) {
+function addProgress(goalId, payload) {
     return new Promise((resolve) => {
-        axios.get(`/api/forum/search?q=${encodeURIComponent(term)}`, useBearerTokenHeaders())
+        axios.post(`/api/goals/${goalId}/logs`, payload, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -736,9 +210,9 @@ function searchForum(term) {
     });
 }
 
-function postJobTrades() {
+function deleteGoal(goalId) {
     return new Promise((resolve) => {
-        axios.get(`/api/post-job-trades`, useBasicAuthHeaders())
+        axios.delete(`/api/goals/${goalId}`, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -746,9 +220,9 @@ function postJobTrades() {
     });
 }
 
-function updateQualificationStatus(payload) {
+function chart(goalId) {
     return new Promise((resolve) => {
-        axios.post(`/admin/api/update-qualification-status`, payload, useBearerTokenHeaders())
+        axios.get(`/api/goals/${goalId}`, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -756,39 +230,9 @@ function updateQualificationStatus(payload) {
     });
 }
 
-function updateJob(jobId, payload) {
+function getCheckInHistory(userId) {
     return new Promise((resolve) => {
-        axios.post(`/admin/api/update-job/${jobId}`, payload, useBearerTokenHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
-
-function updateTradesperson(id, payload) {
-    return new Promise((resolve) => {
-        axios.post(`/admin/api/update-trade-persons/${id}`, payload, useBearerTokenHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
-
-function postProfileView(payload) {
-    return new Promise((resolve) => {
-        axios.post(`/api/profile-views`, payload, useBearerTokenHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
-
-function contactFormSubmit(payload) {
-    return new Promise((resolve) => {
-        axios.post(`/api/contact-us`, payload, useBasicAuthHeaders())
+        axios.get(`/api/checkin-history/${userId}`, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -797,9 +241,9 @@ function contactFormSubmit(payload) {
 }
 
 
-function verifyIdentity(payload) {
+function checkIn(payload) {
     return new Promise((resolve) => {
-        axios.post(`/admin/api/verify-identity`, payload, useBearerTokenHeaders())
+        axios.post(`/api/check-in`, payload, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -807,9 +251,9 @@ function verifyIdentity(payload) {
     });
 }
 
-function askQuestions(payload) {
+function chat(payload) {
     return new Promise((resolve) => {
-        axios.post(`/api/forum/threads`, payload, useBearerTokenHeaders())
+        axios.post(`/api/chat`, payload, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -817,9 +261,9 @@ function askQuestions(payload) {
     });
 }
 
-function submitQuestionComment(id, payload) {
+function getMood(userId) {
     return new Promise((resolve) => {
-        axios.post(`/api/forum/threads/${id}/comments`, payload, useBearerTokenHeaders())
+        axios.get(`/api/analytics/mood/${userId}`, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -827,9 +271,23 @@ function submitQuestionComment(id, payload) {
     });
 }
 
-function submitReply(commentId, payload) {
+function getPlans(userId, type = "") {
     return new Promise((resolve) => {
-        axios.post(`/api/forum/comments/${commentId}/replies`, payload, useBearerTokenHeaders())
+        let url = `/api/users/${userId}/plans`;
+        if (type) {
+            url += `?type=${encodeURIComponent(type)}`;
+        }
+        axios
+            .get(url, useBasicAuthHeaders())
+            .then((response) => resolve(response.data))
+            .catch((err) => resolve({ status: false, message: err.message || err }));
+    });
+}
+
+
+function getEngagement(userId) {
+    return new Promise((resolve) => {
+        axios.get(`/api/analytics/engagement/${userId}`, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -837,9 +295,9 @@ function submitReply(commentId, payload) {
     });
 }
 
-function completeJob(payload) {
+function getGoals(userId) {
     return new Promise((resolve) => {
-        axios.post(`/api/complete-job`, payload, useBearerTokenHeaders())
+        axios.get(`/api/analytics/goals/${userId}`, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -847,74 +305,14 @@ function completeJob(payload) {
     });
 }
 
-function submitRating(payload) {
+function getComB(userId) {
     return new Promise((resolve) => {
-        axios.post(`/api/rate`, payload, useBearerTokenHeaders())
+        axios.get(`/api/com-b/${userId}`, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
             .catch((err) => resolve({status: false, message: err}));
     });
-}
-
-
-function getTradespersonsByTrade(tradeName) {
-    return new Promise((resolve) => {
-        axios.get(`/api/tradesperson-by-name${tradeName ? '?name=' + tradeName : ''}`, useBasicAuthHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
-
-function getTradeQuestion(id) {
-    return new Promise((resolve) => {
-        axios.get(`/api/trades/${id}/questions`, useBasicAuthHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
-
-function getParishCities() {
-    return new Promise((resolve) => {
-        axios.get("/api/parishes-cities", useBasicAuthHeaders())
-            .then((response) => {
-                resolve(response.data);
-            }).catch((err) => resolve({status: false, message: err}));
-    });
-}
-
-function getServiceInvites() {
-    return new Promise((resolve) => {
-        axios.get("/api/get-invites", useBearerTokenHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
-
-function getUserInterest() {
-    return new Promise((resolve) => {
-        axios.get("/api/get-user-interest", useBearerTokenHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
-
-function verifyHomeOwner(payload) {
-    return new Promise((resolve) => {
-        axios.post('/job-poster/api/verify-home-owner', payload, useBasicAuthHeaders())
-            .then(response => {
-                resolve(response.data)
-            }).catch(err => resolve({status: false, message: err}));
-    })
-
 }
 
 function forgotPassword(payload) {
