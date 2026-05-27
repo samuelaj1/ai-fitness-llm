@@ -16,7 +16,7 @@ The system provides personalized coaching, mood-aware support, goal tracking, an
 
 ## Preview
 
-![Fitness App](./images/preview.png)
+![Fitness App](./public/preview.png)
 
 ## Tech Stack
 
